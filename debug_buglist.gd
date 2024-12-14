@@ -11,8 +11,7 @@ onready var tab = $Control/tab/tab.duplicate()
 var size_of_all_tabs_combined = 0
 var tabs = []
 var current_tab_index = 0
-var ms = Vector2.ZERO
-
+var ms = Vector2.ZERO 
 var last_selected_button = null
 var last_selected_button2 = null
 var selected_button = null
@@ -199,6 +198,8 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("CTRL") and Input.is_action_just_pressed("T"):
 		add_tab()
+	if Input.is_action_pressed("CTRL") and Input.is_action_just_pressed("S"):
+		save_file()
 	if $Control/tab/add_tab.global_position.distance_squared_to($Control.get_local_mouse_position()) < 100:
 		$Control/tab/add_tab.scale = $Control/tab/add_tab.scale.linear_interpolate(Vector2.ONE / 1.8, delta * 25)
 		$Control/tab/add_tab.modulate = Color.white
@@ -227,6 +228,14 @@ func _physics_process(delta: float) -> void:
 		
 		offset = offset.linear_interpolate(Vector2.ZERO,delta * 15)
 		scale = scale.linear_interpolate(Vector2.ONE,delta * 15)
+
+func save_file():
+	var exec = OS.get_executable_path().get_base_dir()
+	var file = File.new()
+	var name = tabs[current_tab_index].get_node("Label").text
+	file.open(exec + "/" + name + ".txt", File.WRITE)
+	file.store_string($Control/TextEdit.text)
+	file.close()
 
 func add_tab():
 	$Control/TextEdit.readonly = false
