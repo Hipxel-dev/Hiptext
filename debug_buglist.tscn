@@ -232,9 +232,9 @@ caret_blink_speed = 0.3
 caret_moving_by_right_click = false
 
 [node name="tab" type="Control" parent="Control"]
-margin_left = 3.0
+margin_left = 15.0
 margin_top = -8.0
-margin_right = 437.0
+margin_right = 449.0
 margin_bottom = 24.0
 rect_clip_content = true
 
@@ -244,7 +244,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="tab" type="Node2D" parent="Control/tab"]
-position = Vector2( 20, 25 )
+position = Vector2( 21, 25 )
 script = ExtResource( 4 )
 
 [node name="ColorRect2" type="ColorRect" parent="Control/tab/tab"]
@@ -344,6 +344,7 @@ clip_text = true
 icon_align = 1
 
 [node name="Button2" type="Button" parent="Control"]
+unique_name_in_owner = true
 margin_left = 436.0
 margin_top = 12.0
 margin_right = 453.0
@@ -360,6 +361,26 @@ custom_styles/focus = SubResource( 29 )
 custom_styles/disabled = SubResource( 15 )
 custom_styles/normal = SubResource( 31 )
 text = "-"
+clip_text = true
+icon_align = 1
+
+[node name="Button3" type="Button" parent="Control"]
+anchor_right = 0.253
+margin_left = 413.0
+margin_top = 12.0
+margin_right = 423.88
+margin_bottom = 22.0
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/hseparation = 4545
+custom_fonts/font = SubResource( 11 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 30 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 31 )
+text = "#"
 clip_text = true
 icon_align = 1
 
@@ -401,3 +422,5 @@ text = "
 [connection signal="text_entered" from="Control/tab/tab/Label" to="." method="_on_Label_text_entered"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Control/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="button_down" from="Control/Button3" to="." method="_on_Button3_button_down"]
+[connection signal="button_up" from="Control/Button3" to="." method="_on_Button3_button_up"]
