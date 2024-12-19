@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://picotron.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://debug_buglist.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://cross.png" type="Texture" id=5]
 [ext_resource path="res://click_light.wav" type="AudioStream" id=6]
 [ext_resource path="res://bold_circular_gauge.png" type="Texture" id=7]
+[ext_resource path="res://settings_icon.png" type="Texture" id=8]
+
+[sub_resource type="Theme" id=44]
 
 [sub_resource type="StyleBoxFlat" id=19]
 
@@ -24,6 +27,29 @@ thickness = 6
 [sub_resource type="DynamicFont" id=17]
 size = 8
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=38]
+bg_color = Color( 1, 1, 1, 1 )
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id=39]
+
+[sub_resource type="StyleBoxFlat" id=40]
+
+[sub_resource type="StyleBoxFlat" id=41]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 1 )
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id=42]
 
 [sub_resource type="DynamicFont" id=2]
 size = 8
@@ -85,12 +111,11 @@ PopupMenu/colors/font_color_hover = Color( 0, 0, 0, 1 )
 PopupMenu/colors/font_color_separator = Color( 1, 1, 1, 1 )
 PopupMenu/fonts/font = SubResource( 17 )
 PopupMenu/icons/checked = null
-PopupMenu/styles/hover = null
-PopupMenu/styles/labeled_separator_left = null
-PopupMenu/styles/labeled_separator_right = null
-PopupMenu/styles/panel = null
-PopupMenu/styles/panel_disabled = null
-PopupMenu/styles/separator = null
+PopupMenu/styles/hover = SubResource( 38 )
+PopupMenu/styles/labeled_separator_left = SubResource( 39 )
+PopupMenu/styles/labeled_separator_right = SubResource( 40 )
+PopupMenu/styles/panel = SubResource( 41 )
+PopupMenu/styles/panel_disabled = SubResource( 42 )
 TextEdit/colors/background_color = Color( 0, 0, 0, 0.145098 )
 TextEdit/colors/caret_background_color = Color( 0, 0, 0, 1 )
 TextEdit/colors/code_folding_color = Color( 0.8, 0.8, 0.8, 0.8 )
@@ -100,7 +125,7 @@ TextEdit/colors/current_line_color = Color( 0, 0, 0, 1 )
 TextEdit/colors/font_color = Color( 1, 1, 1, 1 )
 TextEdit/colors/font_color_readonly = Color( 0.811765, 0.827451, 0.854902, 1 )
 TextEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
-TextEdit/colors/selection_color = Color( 0.101961, 0.129412, 0.572549, 1 )
+TextEdit/colors/selection_color = Color( 1, 1, 1, 0.419608 )
 TextEdit/colors/word_highlighted_color = Color( 0, 0, 0, 1 )
 TextEdit/fonts/font = SubResource( 2 )
 TextEdit/icons/fold = null
@@ -114,6 +139,14 @@ VScrollBar/styles/grabber_highlight = SubResource( 5 )
 VScrollBar/styles/grabber_pressed = SubResource( 6 )
 VScrollBar/styles/scroll = SubResource( 7 )
 VScrollBar/styles/scroll_focus = SubResource( 8 )
+
+[sub_resource type="Gradient" id=36]
+offsets = PoolRealArray( 0, 0.722222, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.227451, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=37]
+gradient = SubResource( 36 )
+width = 155
 
 [sub_resource type="CanvasItemMaterial" id=33]
 blend_mode = 2
@@ -179,6 +212,15 @@ border_width_bottom = 1
 border_color = Color( 0, 0, 0, 0 )
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id=43]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+anti_aliasing = false
+
 [sub_resource type="DynamicFont" id=34]
 
 [node name="buglist" type="CanvasLayer" groups=["buglist"]]
@@ -214,6 +256,7 @@ margin_left = 75.0
 margin_top = 32.0
 margin_right = 565.0
 margin_bottom = 340.0
+theme = SubResource( 44 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="TextEdit" type="TextEdit" parent="Control"]
@@ -225,11 +268,19 @@ focus_mode = 1
 mouse_filter = 1
 input_pass_on_modal_close_click = false
 theme = SubResource( 9 )
-highlight_current_line = true
+override_selected_font_color = true
 smooth_scrolling = true
+v_scroll_speed = 40.0
 caret_blink = true
 caret_blink_speed = 0.3
 caret_moving_by_right_click = false
+
+[node name="grdnt" type="Sprite" parent="Control/TextEdit"]
+position = Vector2( 182, 137.666 )
+rotation = 1.57079
+scale = Vector2( 3.54625, 629.017 )
+texture = SubResource( 37 )
+offset = Vector2( 100, 0 )
 
 [node name="tab" type="Control" parent="Control"]
 margin_left = 3.0
@@ -252,13 +303,15 @@ margin_left = 1.0
 margin_top = -9.0
 margin_right = 19.0
 margin_bottom = 21.0
-color = Color( 0, 0, 0, 0.392157 )
+mouse_filter = 1
+color = Color( 0, 0, 0, 0.588235 )
 
 [node name="ColorRect" type="NinePatchRect" parent="Control/tab/tab"]
 margin_top = -10.0
 margin_right = 20.0
 margin_bottom = 16.0
 rect_clip_content = true
+mouse_filter = 1
 texture = ExtResource( 3 )
 patch_margin_left = 1
 patch_margin_top = 1
@@ -272,6 +325,7 @@ margin_left = 1.0
 margin_top = 20.0
 margin_right = 19.0
 margin_bottom = 30.0
+mouse_filter = 1
 
 [node name="ColorRect4" type="ColorRect" parent="Control/tab/tab/ColorRect"]
 show_behind_parent = true
@@ -279,7 +333,8 @@ margin_left = 1.0
 margin_top = 20.0
 margin_right = 324.0
 margin_bottom = 30.0
-color = Color( 0, 0, 0, 0.392157 )
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.588235 )
 
 [node name="Label" type="LineEdit" parent="Control/tab/tab"]
 margin_left = 7.0
@@ -363,6 +418,34 @@ text = "-"
 clip_text = true
 icon_align = 1
 
+[node name="settings_popup" type="Control" parent="Control"]
+margin_left = 479.0
+margin_top = 5.0
+margin_right = 519.0
+margin_bottom = 59.0
+rect_clip_content = true
+
+[node name="Button3" type="Button" parent="Control/settings_popup"]
+margin_left = 2.0
+margin_top = 23.0
+margin_right = 12.0
+margin_bottom = 33.0
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_constants/hseparation = 4545
+custom_fonts/font = SubResource( 32 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 29 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 43 )
+action_mode = 0
+icon = ExtResource( 8 )
+clip_text = true
+icon_align = 1
+
 [node name="typing_noise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -1.0
@@ -401,3 +484,4 @@ text = "
 [connection signal="text_entered" from="Control/tab/tab/Label" to="." method="_on_Label_text_entered"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Control/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Control/settings_popup/Button3" to="." method="_on_Button3_pressed"]

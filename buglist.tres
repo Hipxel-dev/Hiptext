@@ -6,3 +6,6 @@
 script = ExtResource( 1 )
 saved_text = [ "" ]
 text_names = [ "" ]
+booleans = [ false ]
+settings_variable = [  ]
+settings_value = [  ]

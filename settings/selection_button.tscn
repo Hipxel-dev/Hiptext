@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://settings/selection_button.gd" type="Script" id=1]
+[ext_resource path="res://picotron.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://rect.png" type="Texture" id=3]
+[ext_resource path="res://click_light.wav" type="AudioStream" id=4]
+[ext_resource path="res://dropdown_icon.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 2 )
+
+[node name="selection_button" type="Control"]
+margin_right = 909.0
+margin_bottom = 15.0
+rect_clip_content = true
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = -36.0
+margin_top = -29.0
+margin_right = 566.0
+margin_bottom = 61.0
+
+[node name="text" type="Label" parent="."]
+margin_left = 50.0
+margin_top = -4.0
+margin_right = 90.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 1 )
+text = "Selection"
+valign = 1
+
+[node name="selection_container" type="NinePatchRect" parent="."]
+margin_left = 274.0
+margin_top = 1.0
+margin_right = 339.0
+margin_bottom = 14.0
+rect_clip_content = true
+texture = ExtResource( 3 )
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="ColorRect2" type="ColorRect" parent="selection_container"]
+margin_left = -9.0
+margin_top = 14.0
+margin_right = 430.0
+margin_bottom = 15.0
+color = Color( 0.333333, 0.333333, 0.333333, 1 )
+
+[node name="text" type="Label" parent="selection_container"]
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 50.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 1 )
+text = "Selection"
+valign = 1
+
+[node name="ColorRect" type="ColorRect" parent="selection_container"]
+modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+margin_left = -8.0
+margin_top = -7.0
+margin_right = 354.0
+margin_bottom = 1236.0
+
+[node name="select_fx" type="ColorRect" parent="selection_container"]
+show_behind_parent = true
+margin_left = -29.0
+margin_top = -1.0
+margin_right = 481.0
+margin_bottom = 9.0
+rect_pivot_offset = Vector2( 0, 3 )
+color = Color( 1, 1, 1, 0.235294 )
+
+[node name="Control" type="Control" parent="selection_container"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -7.0
+margin_top = -6.0
+margin_right = 33.0
+margin_bottom = 34.0
+
+[node name="dropdown_icon" type="Sprite" parent="selection_container/Control"]
+texture = ExtResource( 5 )
+
+[node name="Position2D" type="Position2D" parent="selection_container"]
+position = Vector2( 5, 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="selection_container"]
+stream = ExtResource( 4 )
+volume_db = -2.0
+pitch_scale = 15.0

@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://picotron.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://rect.png" type="Texture" id=2]
+[ext_resource path="res://settings/slider_button.gd" type="Script" id=3]
+[ext_resource path="res://click_light.wav" type="AudioStream" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 1 )
+
+[node name="slider_button" type="Control"]
+margin_right = 474.0
+margin_bottom = 15.0
+rect_clip_content = true
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = -36.0
+margin_top = -29.0
+margin_right = 566.0
+margin_bottom = 61.0
+
+[node name="text" type="Label" parent="."]
+margin_left = 50.0
+margin_top = -4.0
+margin_right = 90.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 1 )
+text = "Slider"
+valign = 1
+
+[node name="text2" type="Label" parent="."]
+margin_left = 436.0
+margin_top = -3.0
+margin_right = 476.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 1 )
+text = "100%"
+valign = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = 276.0
+margin_top = 4.0
+margin_right = 426.0
+margin_bottom = 11.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+value = 50.0
+percent_visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ProgressBar"]
+stream = ExtResource( 4 )
+volume_db = -2.0
+pitch_scale = 15.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ProgressBar"]
+margin_left = 74.0
+margin_top = -1.0
+margin_right = 78.0
+margin_bottom = 8.0
+texture = ExtResource( 2 )
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
